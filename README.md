@@ -83,3 +83,14 @@ As cinco arquiteturas são:
     - Linear(2048, 512)
     - GELU
     - Linear(512, 8)
+
+- FC_512_128_BN_Dropout_Tanh:
+  - Linear(model.fc.in_features, 512)
+  - BatchNorm1d(512)
+  - Tanh
+  - Dropout(0.3)
+  - Linear(512, 128)
+  - BatchNorm1d(128)
+  - Tanh
+  - Dropout(0.3)
+  - Linear(128, 8)
