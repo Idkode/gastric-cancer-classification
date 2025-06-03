@@ -53,14 +53,13 @@ model.fc = nn.Sequential(
 )
 
 
-
 model_name = model.__class__.__name__
 
 if not os.path.exists(name := "results/" + model_name):
     os.makedirs(name, exist_ok=True)
 
 files = os.listdir(name)
-nome_arq = "fc_decrescente"
+nome_arq = "fc_GELU"
 path = name + "/" + nome_arq + "/"
 if not os.path.exists(path):
     os.makedirs(path, exist_ok=True)
