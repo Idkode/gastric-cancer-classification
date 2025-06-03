@@ -30,15 +30,31 @@ A partir dessa arquitetura, serão realizados experimentos em 5 arquiteturas dif
 Os blocos finais da rede layer3, layer4 e avgpool serão descongelados para que sejam ajustados ao dataset e características específicas dele possam ser aprendidas.
 
 | Parâmetro                | Valor                                  |
-|--------------------------|----------------------------------------|
+|------------------------------|----------------------------------------|
 | **Otimizador**               | Adam                                   |
 | **Função de perda**          | CrossEntropyLoss                       |
 | **Número de Épocas**         | 800                                    |
+| **Estratégia de Validação**  | Holdout                                |
+| **Partição de Teste**        | 20%                                    |
+| **Partição de Validação**    | 10% do restante (após teste)           |
+| **Partição de Treino**       | 90% do restante (após teste)           |
+| **Paciência**                | 80                                     |
 | **Scheduler**                | Redução do learning rate em 10%        |
-| **Paciência do scheduler**   | 6 épocas                               |
+| **Paciência do scheduler**   | 6 épocas                               |    
 | **Batch size**               | 64                                     |
 | **Blocos descongelados**     | layer3, layer4, avgpool                |
 
+## Particionamento do Dataset
+O dataset foi particionado conforme implementação dos autores, sendo 20% do dataset utilizado para teste, 10% do restante para validação e 90% do restante para treino.
+
+| Conjunto       | Porcentagem do total |
+|----------------|----------------------|
+| **Teste**      | 20%                  |
+| **Treino**     | 72%                  |
+| **Validação**  | 8%                   |
+
+
+## Arquiteturas propostas
 As cinco arquiteturas são:
 
 - Arquitetura com número de neurônios decrescente:
@@ -50,3 +66,13 @@ As cinco arquiteturas são:
     - ReLU
     - Linear(64, 8)
 
+- Arquitetura FC_1024_256_BN_Dropout:
+Linear(model.fc.in_features, 1024)
+BatchNorm1d(1024)
+ReLU
+Dropout(0.4)
+Linear(1024, 256)
+BatchNorm1d(256)
+ReLU
+Dropout(0.4)
+Linear(256, 8)
