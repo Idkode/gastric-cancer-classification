@@ -106,9 +106,9 @@ As cinco arquiteturas são:
 
 - FC_Dropout_SiLU:
     - Linear(model.fc.in_features, 1024)
-    - Sigmoid
-    - Linear(1024, 512)
-    - Sigmoid
-    - Linear(512, 64)
-    - Sigmoid
-    - Linear(64,8)
+    - nn.SiLU(),
+    - nn.Dropout(0.5),
+    - nn.Linear(1024, 256),
+    - nn.SiLU(),
+    - nn.Dropout(0.5),
+    - nn.Linear(512, 8)
