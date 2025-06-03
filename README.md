@@ -33,6 +33,7 @@ Os blocos finais da rede layer3, layer4 e avgpool serão descongelados para que 
 |------------------------------|----------------------------------------|
 | **Otimizador**               | Adam                                   |
 | **Função de perda**          | CrossEntropyLoss                       |
+| **Taxa de aprendizado inicial** | 0.001                               |
 | **Número de Épocas**         | 800                                    |
 | **Estratégia de Validação**  | Holdout                                |
 | **Partição de Teste**        | 20%                                    |
@@ -43,7 +44,6 @@ Os blocos finais da rede layer3, layer4 e avgpool serão descongelados para que 
 | **Paciência do scheduler**   | 6 épocas                               |    
 | **Batch size**               | 64                                     |
 | **Blocos descongelados**     | layer3, layer4, avgpool                |
-
 ## Particionamento do Dataset
 O dataset foi particionado conforme implementação dos autores, sendo 20% do dataset utilizado para teste, 10% do restante para validação e 90% do restante para treino.
 
