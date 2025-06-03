@@ -94,3 +94,12 @@ As cinco arquiteturas são:
   - Tanh
   - Dropout(0.3)
   - Linear(128, 8)
+
+- FC_1024_64_Sigmoid:
+    - Linear(model.fc.in_features, 1024)
+    - Sigmoid
+    - Linear(1024, 512)
+    - Sigmoid
+    - Linear(512, 64)
+    - Sigmoid
+    - Linear(64,8)
