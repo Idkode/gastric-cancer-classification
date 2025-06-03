@@ -76,3 +76,7 @@ As cinco arquiteturas são:
     - ReLU
     - Dropout(0.4)
     - Linear(256, 8)
+  - FC_2048_512_GELU:
+    - Linear(model.fc.in_features, 2048)
+    - GELU
+    - Linear(2048, 512) 
