@@ -1,7 +1,7 @@
 import pandas as pd
 import numpy as np
 from src.dataset import StomachCancerDataset
-from dataloader import build_loader
+from src.dataloader import build_loader
 import torch
 from torchvision import transforms
 from torchvision.models.resnet import resnet152, ResNet152_Weights
