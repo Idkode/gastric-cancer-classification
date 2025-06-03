@@ -60,8 +60,8 @@ if not os.path.exists(name := "results/" + model_name):
     os.mkdir(name)
 
 files = os.listdir(name)
-number = len(files)
-path = name + "/" + str(number) + "/"
+nome_arq = "fc_decrescente"
+path = name + "/" + nome_arq + "/"
 if not os.path.exists(path):
     os.mkdir(path)
 
