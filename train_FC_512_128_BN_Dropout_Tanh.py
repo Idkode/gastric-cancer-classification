@@ -33,27 +33,15 @@ val_data = pd.read_csv('validation.csv')
 X_val = val_data['path'].values
 y_val = val_data['label'].map(label_mapper).values
 
-process_val = transforms.Compose([
-    transforms.Resize((224,224), interpolation=transforms.InterpolationMode.NEAREST_EXACT),
-    transforms.ToTensor(),
-    transforms.Normalize(mean=[0.485, 0.456, 0.406],
-                         std=[0.229, 0.224, 0.225]),
-])
+transform = transforms.Compose(
+    [
+        transforms.ToTensor(),
+        transforms.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225]),
+    ]
+)
 
-preprocess_train = transforms.Compose([
-    transforms.RandomAffine((-15, 15),
-                            (0.2, 0.2),
-                            (0.8, 1.2)),
-                    transforms.RandomResizedCrop(224),
-    #                transforms.Resize(255),
-     #               transforms.CenterCrop(224),
-                    transforms.ToTensor(),
-                    transforms.Normalize(mean=[0.485, 0.456, 0.406],
-                                         std=[0.229, 0.224, 0.225]),
-])
-
-train_dataset = StomachCancerDataset(X_train, y_train, preprocess_train)
-val_dataset = StomachCancerDataset(X_val, y_val, process_val)
+train_dataset = StomachCancerDataset(X_train, y_train, transform)
+val_dataset = StomachCancerDataset(X_val, y_val, transform)
 
 batch_size = 64
 
@@ -80,8 +68,8 @@ if not os.path.exists(name := 'results/' + model_name):
     os.mkdir(name)
 
 files = os.listdir(name)
-number = len(files)
-path = name + '/' + str(number) + '/'
+nome_arq = "fc_1024_512_bn_dropout_tanh"
+path = name + '/' + nome_arq + '/'
 if not os.path.exists(path):
     os.mkdir(path)
 
@@ -119,4 +107,4 @@ train_model(model,
             scheduler)
 
 print(datetime.now())
-print(f'Treino finalizado.\nTempo total: {(datetime.now() - start).total_seconds} segundos')
+print(f'Treino finalizado.\nTempo total: {(datetime.now() - start).total_seconds()} segundos')

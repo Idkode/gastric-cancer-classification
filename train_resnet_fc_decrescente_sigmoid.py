@@ -60,7 +60,7 @@ if not os.path.exists(name := "results/" + model_name):
     os.makedirs(name, exist_ok=True)
 
 files = os.listdir(name)
-nome_arq = "fc_decrescente"
+nome_arq = "fc_decrescente_sigmoid"
 path = name + "/" + nome_arq + "/"
 if not os.path.exists(path):
     os.makedirs(path, exist_ok=True)
@@ -101,5 +101,5 @@ train_model(
 
 print(datetime.now())
 print(
-    f"Treino finalizado.\nTempo total: {(datetime.now() - start).total_seconds} segundos"
+    f"Treino finalizado.\nTempo total: {(datetime.now() - start).total_seconds()} segundos"
 )

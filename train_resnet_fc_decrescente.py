@@ -101,5 +101,5 @@ train_model(
 
 print(datetime.now())
 print(
-    f"Treino finalizado.\nTempo total: {(datetime.now() - start).total_seconds} segundos"
+    f"Treino finalizado.\nTempo total: {(datetime.now() - start).total_seconds()} segundos"
 )
