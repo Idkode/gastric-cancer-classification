@@ -111,4 +111,4 @@ As cinco arquiteturas são:
     - nn.Linear(1024, 256),
     - nn.SiLU(),
     - nn.Dropout(0.5),
-    - nn.Linear(512, 8)
+    - nn.Linear(256, 8)
