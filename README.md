@@ -1,18 +1,18 @@
 # Gastric Cancer Classification
 
-This repository refers to an on-going work for a multiclass classification problem in gastric cancer histopathology.
+Este repositório se refere a um trabalho em andamento para um problema de classificação multiclasse em histopatologia do câncer gástrico
 
 ## Dataset
-**Name**: HMU-GC-HE-30K – *Gastric Cancer Histopathology Tissue Image Dataset (GCHTID)*  
-**Source**: Lou *et al.* “A large histological images dataset of gastric cancer with tumour microenvironment annotation for AI”. DOI: 10.1038/s41597-025-04489-9.
-Avaliable at https://www.nature.com/articles/s41597-025-04489-9.
+**Nome**: HMU-GC-HE-30K – *Gastric Cancer Histopathology Tissue Image Dataset (GCHTID)*  
+**Fonte**: Lou *et al.* “A large histological images dataset of gastric cancer with tumour microenvironment annotation for AI”. DOI: 10.1038/s41597-025-04489-9.
+Disponível em https://www.nature.com/articles/s41597-025-04489-9.
 
-**Content**: ~31,000 RGB image patches (224 × 224 px) cropped from 300 H&E-stained whole-slide images (WSI) of gastric cancer patients.
+**Conteúdo**: ~31.000 recortes de imagens RGB (224 × 224 px) extraídos de 300 lâminas histológicas digitalizadas (WSI) de pacientes com câncer gástrico, coradas com H&E.
 
-Each patch is annotated with one of the eight tumour-microenvironment (TME) tissue classes:
+Cada recorte é anotado com uma das oito classes de tecido do microambiente tumoral (TME):
 
-| Abbr. | Tissue / Component     |
-|-------|------------------------|
+| Abrev. | Tecido / Componente    |
+|-------|-------------------------|
 | **ADI** | Adipose tissue        |
 | **DEB** | Debris                |
 | **MUC** | Mucus                 |
