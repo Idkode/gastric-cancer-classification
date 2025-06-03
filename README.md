@@ -80,4 +80,6 @@ As cinco arquiteturas são:
 - FC_2048_512_GELU:
     - Linear(model.fc.in_features, 2048)
     - GELU
-    - Linear(2048, 512) 
+    - Linear(2048, 512)
+    - GELU
+    - Linear(512, 8)
