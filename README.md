@@ -57,7 +57,7 @@ O dataset foi particionado conforme implementação dos autores, sendo 20% do da
 ## Arquiteturas propostas
 As cinco arquiteturas são:
 
-- Arquitetura com número de neurônios decrescente:
+- Número de neurônios decrescente:
     - Linear(model.fc.in_features, 2048)
     - ReLU
     - Linear(2048, 512)
@@ -66,13 +66,13 @@ As cinco arquiteturas são:
     - ReLU
     - Linear(64, 8)
 
-- Arquitetura FC_1024_256_BN_Dropout:
-Linear(model.fc.in_features, 1024)
-BatchNorm1d(1024)
-ReLU
-Dropout(0.4)
-Linear(1024, 256)
-BatchNorm1d(256)
-ReLU
-Dropout(0.4)
-Linear(256, 8)
+- FC_1024_256_BN_Dropout:
+    - Linear(model.fc.in_features, 1024)
+    - BatchNorm1d(1024)
+    - ReLU
+    - Dropout(0.4)
+    - Linear(1024, 256)
+    - BatchNorm1d(256)
+    - ReLU
+    - Dropout(0.4)
+    - Linear(256, 8)
