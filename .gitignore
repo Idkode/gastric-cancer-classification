@@ -174,3 +174,6 @@ cython_debug/
 .pypirc
 **/*.zip
 **/*.png
+
+# Ignorar modelo
+results/ResNet/fc_decrescente/*.pth
