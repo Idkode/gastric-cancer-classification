@@ -1,6 +1,6 @@
 import pandas as pd
 from src.dataset import StomachCancerDataset
-from dataloader import build_loader
+from src.dataloader import build_loader
 from torchvision import transforms
 from torchvision.models.resnet import resnet152, ResNet152_Weights
 import torch.optim as optim
@@ -57,13 +57,13 @@ model.fc = nn.Sequential(
 model_name = model.__class__.__name__
 
 if not os.path.exists(name := "results/" + model_name):
-    os.mkdir(name)
+    os.makedirs(name, exist_ok=True)
 
 files = os.listdir(name)
 nome_arq = "fc_decrescente"
 path = name + "/" + nome_arq + "/"
 if not os.path.exists(path):
-    os.mkdir(path)
+    os.makedirs(path, exist_ok=True)
 
 csv_file = path + "train_stats.csv"
 
