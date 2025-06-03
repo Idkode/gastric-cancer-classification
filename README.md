@@ -22,3 +22,31 @@ Each patch is annotated with one of the eight tumour-microenvironment (TME) tiss
 | **NOR** | Normal mucosa         |
 | **TUM** | Tumour epithelium     |
 
+
+## Detalhes dos Experimentos
+
+A tarefa realizada será a classificação das imagens do dataset nas 8 classes de Tecido/Componente listadas acima. A arquitetura base escolhida para o treinamento foi a ResNet152 pré-treinada com os pesos IMAGENET1K_V1 disponibilizados pela biblioteca Torch.  Como essa rede teve um bom desempenho na competição ImageNet, com muitas classes diferentes, acreditamos que sua capacidade de extração de características seja útil para a resolução do problema.
+A partir dessa arquitetura, serão realizados experimentos em 5 arquiteturas diferentes da rede _fully connected_. Para os quatro experimentos, serão mantidos os seguintes parâmetros: otimizador Adam, função de perda CrossEntropyLoss, número de épocas de 800, _early stopping_ com paciência de 80 épocas,  scheduler de redução do learning rate em 10% com uma paciência de 6 épocas e batch de 64.
+Os blocos finais da rede layer3, layer4 e avgpool serão descongelados para que sejam ajustados ao dataset e características específicas dele possam ser aprendidas.
+
+| Parâmetro                | Valor                                  |
+|--------------------------|----------------------------------------|
+| **Otimizador**               | Adam                                   |
+| **Função de perda**          | CrossEntropyLoss                       |
+| **Número de Épocas**         | 800                                    |
+| **Scheduler**                | Redução do learning rate em 10%        |
+| **Paciência do scheduler**   | 6 épocas                               |
+| **Batch size**               | 64                                     |
+| **Blocos descongelados**     | layer3, layer4, avgpool                |
+
+As cinco arquiteturas são:
+
+- Arquitetura com número de neurônios decrescente:
+    - Linear(model.fc.in_features, 2048)
+    - ReLU
+    - Linear(2048, 512)
+    - ReLU
+    - Linear(512, 64)
+    - ReLU
+    - Linear(64, 8)
+
