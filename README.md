@@ -26,7 +26,7 @@ Cada recorte é anotado com uma das oito classes de tecido do microambiente tumo
 ## Detalhes dos Experimentos
 
 A tarefa realizada será a classificação das imagens do dataset nas 8 classes de Tecido/Componente listadas acima. A arquitetura base escolhida para o treinamento foi a ResNet152 pré-treinada com os pesos IMAGENET1K_V1 disponibilizados pela biblioteca Torch.  Como essa rede teve um bom desempenho na competição ImageNet, com muitas classes diferentes, acreditamos que sua capacidade de extração de características seja útil para a resolução do problema.
-A partir dessa arquitetura, serão realizados experimentos em 5 arquiteturas diferentes da rede _fully connected_. Para os quatro experimentos, serão mantidos os seguintes parâmetros: otimizador Adam, função de perda CrossEntropyLoss, número de épocas de 800, _early stopping_ com paciência de 80 épocas,  scheduler de redução do learning rate em 10% com uma paciência de 6 épocas e batch de 64.
+A partir dessa arquitetura, serão realizados experimentos em 6 arquiteturas diferentes da rede _fully connected_. Para os quatro experimentos, serão mantidos os seguintes parâmetros: otimizador Adam, função de perda CrossEntropyLoss, número de épocas de 800, _early stopping_ com paciência de 80 épocas,  scheduler de redução do learning rate em 10% com uma paciência de 6 épocas e batch de 64.
 Os blocos finais da rede layer3, layer4 e avgpool serão descongelados para que sejam ajustados ao dataset e características específicas dele possam ser aprendidas.
 
 | Parâmetro                | Valor                                  |
@@ -55,9 +55,9 @@ O dataset foi particionado conforme implementação dos autores, sendo 20% do da
 
 
 ## Arquiteturas propostas
-As cinco arquiteturas são:
+As seis arquiteturas são:
 
-- Número de neurônios decrescente:
+- FC_2048-64_RELU:
     - Linear(model.fc.in_features, 2048)
     - ReLU
     - Linear(2048, 512)
@@ -66,7 +66,7 @@ As cinco arquiteturas são:
     - ReLU
     - Linear(64, 8)
 
-- FC_1024_256_BN_Dropout:
+- FC_1024-256_RELU:
     - Linear(model.fc.in_features, 1024)
     - BatchNorm1d(1024)
     - ReLU
@@ -77,14 +77,14 @@ As cinco arquiteturas são:
     - Dropout(0.4)
     - Linear(256, 8)
 
-- FC_2048_512_GELU:
+- FC_2048-512_GELU:
     - Linear(model.fc.in_features, 2048)
     - GELU
     - Linear(2048, 512)
     - GELU
     - Linear(512, 8)
 
-- FC_512_128_BN_Dropout_Tanh:
+- FC_512-128_TANH:
   - Linear(model.fc.in_features, 512)
   - BatchNorm1d(512)
   - Tanh
@@ -95,7 +95,7 @@ As cinco arquiteturas são:
   - Dropout(0.3)
   - Linear(128, 8)
 
-- FC_1024_64_Sigmoid:
+- FC_1024-64_SIGMOID:
     - Linear(model.fc.in_features, 1024)
     - Sigmoid
     - Linear(1024, 512)
@@ -104,7 +104,7 @@ As cinco arquiteturas são:
     - Sigmoid
     - Linear(64,8)
 
-- FC_Dropout_SiLU:
+- FC_1024-256_SILU    :
     - Linear(model.fc.in_features, 1024)
     - nn.SiLU(),
     - nn.Dropout(0.5),
